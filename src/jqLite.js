@@ -512,6 +512,14 @@ forEach({
       JQLiteDealoc(childNodes[i]);
     }
     element.innerHTML = value;
+    try {
+      element.innerHtml = value;
+    } catch (e) {
+      while (element.hasChildNodes()) {
+        element.removeChild(element.lastChild);
+      }
+      element.appendChild(value);
+    }
   }
 }, function(fn, name){
   /**
